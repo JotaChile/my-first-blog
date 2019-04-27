@@ -3,20 +3,14 @@
         <title>Primer proyecto de JP en Django</title>
     </head>
     <body>
-        <div>
-            <h1><a href="/">Un Blog en Django por JP</a></h1>
-        </div>
-
-        <div>
-            <p>published: 26.04.2019, 12:14</p>
-            <h2><a href="">Mi Primer Blog</a></h2>
-            <p>Espero con mucha motivación la bienvenida para ir a un Burdel</p>
-        </div>
-
-        <div>
-            <p>published: 26.04.2019, 12:14</p>
-            <h2><a href="">Emilio la lleah</a></h2>
-            <p> El Emilio se va a sacar unas chelas algun dia ;)</p>
-        </div>
+    <div>
+        <h1><a href = "/"> Django chicas Blog </a></h1>
+    </div>
+    {% for post in posts %}
+    <div>
+        <p> Publicado: {{ post.published_date }} </p>
+        <h1><a href = "">{{ post.title }} </a></h1>
+        <p>{{ post.text|linebreaksbr }} </p>
+    </div>{% endfor %}
     </body>
 </html>
