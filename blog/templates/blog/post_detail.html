@@ -1,6 +1,13 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{post.title}}</li>
+  </ol>
+</nav>
 <div class="post">
 {% if post.published_date %}
 <div class="date">
@@ -9,16 +16,18 @@
 {% else %}
     <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
 {% endif %}
-{% if user.is_authenticated %}
+{% if user.is_authenticated and user == post.author%}
     <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
     <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+
 {% endif %}
 <h1>{{ post.title }}</h1>
+<h5 class="badge badge-secondary">by {{ post.author }}</h5>
 <p>{{ post.text|linebreaksbr }}</p>
 </div>
 
 <hr>
-<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Comentar</a>
 {% for comment in post.comments.all %}
     <div class="comment">
         <div class="date">{{ comment.created_date }}</div>

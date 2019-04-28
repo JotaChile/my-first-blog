@@ -7,6 +7,7 @@
             <p>published: {{ post.published_date }}</p>
         </div>
         <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <h5 class="badge badge-secondary">by {{ post.author }}</h5>
         <p>{{ post.text|linebreaksbr }}</p>
         <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
     </div>
