@@ -1,8 +1,12 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
+<br>
+<br>
     {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
+        <div class="alert alert-danger" role="alert">
+          El usuario y la contraseña no coinciden. Try again.
+        </div>
     {% endif %}
 
     <form method="post" action="{% url 'login' %}">

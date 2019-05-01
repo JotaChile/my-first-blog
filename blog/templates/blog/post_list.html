@@ -1,15 +1,25 @@
 {% extends 'blog/base.html' %}
-
+{% load static %}
 {% block content %}
-{% for post in posts %}
-    <div class="post">
-        <div class="date">
-            <p>published: {{ post.published_date }}</p>
-        </div>
-        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-        <h5 class="badge badge-secondary">by {{ post.author }}</h5>
-        <p>{{ post.text|linebreaksbr }}</p>
-        <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+<br>
+<div class="card-group">
+    {% for post in posts %}
+  <div class="card">
+
+    <div class="card-body">
+        <p class="card-text"><small class="text-muted">{{ post.published_date }}</small></p>
+        <h5 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h5>
+        <h5 class="badge badge-secondary">Por {{ post.author }}</h5>
+      <p class="card-text">{{ post.text|linebreaksbr }}</p>
     </div>
-{% endfor %}
+      <div class="card-footer bg-transparent border-primary"><a href="{% url 'post_detail' pk=post.pk %}">Comentarios: {{ post.comments.count }}</a></div>
+  </div>
+    {% endfor %}
+</div>
+
+
 {% endblock %}
+
+
+
+
